@@ -1,2 +1,7 @@
-ccxt
 pyTelegramBotAPI
+pandas
+ccxt
+flask
+gunicorn
+
+
