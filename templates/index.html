@@ -3,26 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚠️ تحذير أمني خطير</title>
+    <title>⚠️ تحذير أمني خطير - تم كشفك</title>
     <style>
-        body { background: #ff0000; color: white; text-align: center; font-family: 'Cairo', sans-serif; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; }
-        h1 { font-size: 50px; animation: blink 0.5s infinite; }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
-        .troll-img { width: 250px; border-radius: 50%; border: 10px solid white; margin: 20px; }
-        p { font-size: 24px; font-weight: bold; }
+        body { background: #ff0000; color: white; text-align: center; font-family: 'Cairo', sans-serif; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; margin: 0; padding: 20px; box-sizing: border-box; }
+        h1 { font-size: 40px; animation: blink 0.3s infinite; margin-bottom: 10px; }
+        @keyframes blink { 0% { opacity: 1; text-shadow: 0 0 10px #fff; } 50% { opacity: 0; text-shadow: 0 0 20px #000; } 100% { opacity: 1; text-shadow: 0 0 10px #fff; } }
+        .troll-img { width: 200px; max-width: 60%; border-radius: 50%; border: 10px solid white; margin: 20px 0; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        p { font-size: 20px; font-weight: bold; margin: 10px 0; line-height: 1.4; text-shadow: 1px 1px 2px #000; }
+        .serious-warning { background: white; color: red; padding: 10px 20px; border-radius: 5px; font-weight: bold; font-size: 18px; margin-top: 15px; border: 2px solid #000; }
     </style>
 </head>
-<body>
+<body onclick="startTroll()">
     <h1>🚨 تــــــــم كشفك! 🚨</h1>
+    
     <img src="https://media.tenor.com/x8v1oNU1SgNAAAAd/troll-face.gif" class="troll-img">
-    <p>لقد ضغطت على الرابط بدافع الفضول.. أنت الآن "ضحية اليوم"!</p>
-    <p style="font-size: 15px;">(سيتم إرسال تنبيه لكل أصدقائك أنك تحب الفضائح.. أمزح فقط 😂)</p>
+    
+    <p>لقد ضغطت على الرابط بدافع الفضول الأعمى.. أنت الآن "ضحية اليوم"!</p>
+    
+    <p>لقد تم تسجيل بياناتك (عنوان IP، الموقع الجغرافي، نوع الهاتف) وسيتم إرسال تنبيه فوري لجميع أصدقائك في فيسبوك وواتساب أنك تتصفح المحتوى الفضائح والممنوع.</p>
+
+    <div class="serious-warning">تنبيه: سيتم تنفيذ الإرسال تلقائياً خلال دقيقة واحدة.</div>
+    
+    <p style="font-size: 14px; color: #ddd; margin-top: 20px;">(اضغط على الشاشة لإغلاق التنبيه)</p>
+
+    <audio id="alarm-sound" loop>
+        <source src="https://cdn.pixabay.com/audio/2022/10/28/audio_2c8f85f5aa.mp3" type="audio/mpeg">
+        متصفحك لا يدعم الصوت.
+    </audio>
     
     <script>
-        // خدعة بسيطة لمنعهم من إغلاق الصفحة بسهولة
-        window.onbeforeunload = function() {
-            return "هل أنت متأكد؟ الفضيحة ستستمر!";
-        };
+        // دالة لبدء الصوت عند الضغط (لأن المتصفحات الحديثة تحظر التشغيل التلقائي للصوت)
+        function startTroll() {
+            var audio = document.getElementById('alarm-sound');
+            if (audio.paused) {
+                audio.play().catch(function(error) {
+                    console.log('Audio play failed: ', error);
+                });
+            }
+        }
+        
+        // محاولة تشغيل الصوت تلقائياً بمجرد تحميل الصفحة (يعمل في بعض المتصفحات القديمة أو إذا كان المستخدم قد تفاعل مع الموقع من قبل)
+        window.onload = function() {
+            setTimeout(startTroll, 1000); // محاولة تشغيل الصوت بعد ثانية واحدة
+        }
     </script>
 </body>
 </html>
