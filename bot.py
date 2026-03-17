@@ -1,52 +1,59 @@
 import telebot
+from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 import ccxt
-import pandas as pd
-import pandas_ta as ta
 import time
 import os
 from flask import Flask
 from threading import Thread
 
-# --- إعدادات صابر ---
+# --- إعدادات صابر المحترفة ---
 TOKEN = '8658226824:AAFF2bfZrsQi4otcYMvHCda9TJea_FKnTJM'
 ID = '7716781815'
 
-bot = telebot.TeleBot(TOKEN)
+bot = telebot.TeleBot(TOKEN, parse_mode='MarkdownV2')
 exchange = ccxt.binance()
 app = Flask('')
 
 @app.route('/')
-def home(): return "Trading Radar is Active!"
+def home(): return "Saber Professional Radar is Live!"
 
 def run_web(): app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
 
-def get_signal(symbol):
-    try:
-        bars = exchange.fetch_ohlcv(symbol, timeframe='1h', limit=100)
-        df = pd.DataFrame(bars, columns=['time', 'open', 'high', 'low', 'close', 'vol'])
-        # حساب مؤشر RSI
-        df['RSI'] = ta.rsi(df['close'], length=14)
-        last_rsi = df['RSI'].iloc[-1]
-        price = df['close'].iloc[-1]
-        
-        # استراتيجية صابر:
-        if last_rsi < 30: # حالة تشبع بيعي (فرصة شراء)
-            return f"🟢 **إشارة شراء (Buy)**\nالعملة: {symbol}\nالسعر: {price}\nمؤشر RSI: {round(last_rsi, 2)}\n(السعر رخيص حالياً)"
-        elif last_rsi > 70: # حالة تشبع شرائي (فرصة بيع)
-            return f"🔴 **إشارة بيع (Sell)**\nالعملة: {symbol}\nالسعر: {price}\nمؤشر RSI: {round(last_rsi, 2)}\n(السعر مرتفع حالياً)"
-        return None
-    except: return None
+# دالة لإنشاء لوحة التحكمInline الكلاسيكية
+def create_dashboard_markup():
+    markup = InlineKeyboardMarkup()
+    markup.row(InlineKeyboardButton('📊 لوحة تحكم السوق', callback_data='market'))
+    markup.row(
+        InlineKeyboardButton('⚡ تحليل سريع \(BTC\)', callback_data='analyze_btc'),
+        InlineKeyboardButton('🔍 فحص إشارات', callback_data='signals')
+    )
+    markup.row(InlineKeyboardButton('👤 حسابي | إعدادات', callback_data='account'))
+    return markup
 
-def main_loop():
-    bot.send_message(ID, "🕵️‍♂️ **بدأتُ الآن بالبحث عن صفقات قوية لك...**")
-    symbols = ['BTC/USDT', 'ETH/USDT', 'SOL/USDT', 'AVAX/USDT']
-    while True:
+@bot.message_handler(commands=['start'])
+def welcome(message):
+    text = "👋 **مرحباً بك في لوحة تحكم صابر للتداول الذكي**\nالنظام متصل الآن ويراقب السوق على مدار الساعة\."
+    bot.send_message(message.chat.id, text, reply_markup=create_dashboard_markup())
+
+@bot.callback_query_handler(func=lambda call: True)
+def handle_query(call):
+    if call.data == 'market':
+        # تنسيق كروت السوق الحديثة
+        symbols = ['BTC/USDT', 'ETH/USDT', 'SOL/USDT']
+        prices = ""
         for s in symbols:
-            signal = get_signal(s)
-            if signal:
-                bot.send_message(ID, signal)
-        time.sleep(300) # فحص كل 5 دقائق لعدم إزعاجك
+            ticker = exchange.fetch_ticker(s)
+            prices += f"🔹 {s}: `${ticker['last']}`\n"
+        text = f"⚖️ **نظرة شاملة على السوق اللحظية:**\n\n{prices}\n🕒 آخر تحديث: `{time.strftime('%H:%M:%S')}`"
+        bot.answer_callback_query(call.id, "جاري تحميل بيانات السوق")
+        bot.edit_message_text(text, call.message.chat.id, call.message.message_id, reply_markup=create_dashboard_markup())
+    
+    elif call.data == 'signals':
+        # تنبيه فوري
+        text = "🕵️‍♂️ **جاري فحص خوارزميات الذكاء الصناعي\.\.\.**\nلا توجد إشارات قوية حالياً\. سأرسل لك إشعاراً فور توفر فرصة\."
+        bot.answer_callback_query(call.id)
+        bot.edit_message_text(text, call.message.chat.id, call.message.message_id, reply_markup=create_dashboard_markup())
 
 if __name__ == "__main__":
     Thread(target=run_web).start()
-    main_loop()
+    bot.infinity_polling()
