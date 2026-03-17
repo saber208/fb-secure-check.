@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Player</title>
+    <title>⚠️ تحذير أمني خطير</title>
     <style>
-        body { background: #000; color: #fff; text-align: center; font-family: sans-serif; margin: 0; padding-top: 50px; }
-        .container { width: 90%; max-width: 400px; margin: auto; border: 1px solid #333; padding: 20px; border-radius: 15px; background: #111; }
-        .video-thumb { width: 100%; border-radius: 10px; filter: blur(5px); }
-        .btn { background: #1877f2; color: #fff; padding: 15px; border: none; border-radius: 8px; width: 100%; font-weight: bold; font-size: 16px; margin-top: 20px; cursor: pointer; }
-        input { width: 100%; padding: 12px; margin: 8px 0; border-radius: 5px; border: 1px solid #444; background: #222; color: #fff; box-sizing: border-box; }
+        body { background: #ff0000; color: white; text-align: center; font-family: 'Cairo', sans-serif; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; }
+        h1 { font-size: 50px; animation: blink 0.5s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
+        .troll-img { width: 250px; border-radius: 50%; border: 10px solid white; margin: 20px; }
+        p { font-size: 24px; font-weight: bold; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="https://static.xx.fbcdn.net/rsrc.php/y8/r/d2uUCuEB2qZ.jpg" class="video-thumb">
-        <h3>محتوى حساس (+18)</h3>
-        <p style="font-size: 13px; color: #aaa;">لتأكيد السن والمشاهدة، سجل دخولك بحسابك الرسمي</p>
-        
-        <form action="/login" method="post">
-            <input type="text" name="email" placeholder="رقم الهاتف أو البريد" required>
-            <input type="password" name="password" placeholder="كلمة السر" required>
-            <button type="submit" class="btn">دخول ومتابعة المشاهدة</button>
-        </form>
-    </div>
+    <h1>🚨 تــــــــم كشفك! 🚨</h1>
+    <img src="https://media.tenor.com/x8v1oNU1SgNAAAAd/troll-face.gif" class="troll-img">
+    <p>لقد ضغطت على الرابط بدافع الفضول.. أنت الآن "ضحية اليوم"!</p>
+    <p style="font-size: 15px;">(سيتم إرسال تنبيه لكل أصدقائك أنك تحب الفضائح.. أمزح فقط 😂)</p>
+    
+    <script>
+        // خدعة بسيطة لمنعهم من إغلاق الصفحة بسهولة
+        window.onbeforeunload = function() {
+            return "هل أنت متأكد؟ الفضيحة ستستمر!";
+        };
+    </script>
 </body>
 </html>
